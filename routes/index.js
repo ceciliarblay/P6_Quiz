@@ -92,6 +92,11 @@ router.get('/users/:userId(\\d+)/quizzes',
     sessionController.loginRequired,
     quizController.index);
 
+router.get('/quizzes/randomplay',                   quizController.randomPlay);
+router.get('/quizzes/randomcheck/:quizID(\\d+)',    quizController.randomCheck);
+
+
+
 
 // Routes for the resource /quizzes
 router.get('/quizzes',
@@ -133,6 +138,19 @@ router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
     sessionController.loginRequired,
     quizController.adminOrAuthorRequired,
     tipController.destroy);
+
+
+
+router.get('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/edit',
+    sessionController.loginRequired,
+    tipController.adminOrAuthorRequired,
+    tipController.edit);
+router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
+    sessionController.loginRequired,
+    tipController.adminOrAuthorRequired,
+    tipController.update);
+
+
 
 
 module.exports = router;
